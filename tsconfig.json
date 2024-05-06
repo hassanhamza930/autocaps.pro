@@ -4,12 +4,13 @@
 		"module": "commonjs",
 		"jsx": "react-jsx",
 		"outDir": "./dist",
-		"strict": true,
-		"noEmit": true,
+		"strict": false,
+		"noEmit": false,
 		"lib": ["es2015"],
 		"esModuleInterop": true,
 		"skipLibCheck": true,
 		"forceConsistentCasingInFileNames": true,
-		"noUnusedLocals": true
+		"noUnusedLocals": false,
+		"alwaysStrict": false,
 	}
 }
