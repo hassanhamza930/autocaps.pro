@@ -26,7 +26,7 @@
   },
   "devDependencies": {
     "@remotion/eslint-config": "4.0.150",
-    "@remotion/tailwind": "4.0.150",
+    "@remotion/tailwind": "^4.0.150",
     "@types/react": "^18.0.26",
     "@types/web": "^0.0.143",
     "eslint": "^8.43.0",
@@ -35,7 +35,7 @@
   },
   "scripts": {
     "start": "remotion studio",
-    "build": "remotion render MyComp out/video.mp4",
+    "build": "remotion render textAnim out/video.mp4",
     "upgrade": "remotion upgrade",
     "test": "eslint src --ext ts,tsx,js,jsx && tsc"
   },

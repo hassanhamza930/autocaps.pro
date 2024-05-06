@@ -11,7 +11,7 @@ const RenderRoot = () => {
 	return (
 		<RecoilRoot>
 			<Composition
-				id="textanim"
+				id="textAnim"
 				component={TextAnim}
 				durationInFrames={30 * duration}
 				fps={30}
