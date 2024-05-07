@@ -4,6 +4,8 @@ import viteLogo from '/vite.svg'
 import { Player } from '@remotion/player'
 import { TextAnim } from './remotion/textAnimComp'
 
+
+
 function App() {
   const [count, setCount] = useState(0)
   const duration = 8
@@ -15,6 +17,7 @@ function App() {
   const [audioChunks, setAudioChunks] = useState([]);
   const [audio, setAudio] = useState(null);
   const [speech, setspeech] = useState("Hello World, Let's see how it goes");
+  const [vidUrl, setvidUrl] = useState("");
   const mimeType = "audio/webm";
 
 
@@ -36,7 +39,6 @@ function App() {
     setAudioChunks(localAudioChunks);
   };
 
-
   const stopRecording = () => {
     setRecordingStatus("inactive");
     //stops the recording instance
@@ -50,7 +52,6 @@ function App() {
       setAudioChunks([]);
     };
   };
-
 
   const getMicrophonePermission = async () => {
     if ("MediaRecorder" in window) {
@@ -70,10 +71,10 @@ function App() {
   };
 
   useEffect(()=>{
-    getMicrophonePermission();
-    setTimeout(()=>{
-      setspeech("I mean i'm not the one to complain or anything but it's just been really hard these past couple of days");
-    },2000);
+    // getMicrophonePermission();
+    // setTimeout(()=>{
+    //   setspeech("I mean i'm not the one to complain or anything but it's just been really hard these past couple of days");
+    // },2000);
   },[])
 
 
@@ -94,9 +95,10 @@ function App() {
           inputProps={{title:speech}}
           fps={30}
         />
+        
 
         <div className='h-full w-full bg-white/90 rounded-xl backdrop-blur-xl flex flex-col gap-5 justify-center items-center'>
-          <div className="audio-controls">
+          {/* <div className="audio-controls">
             {!permission ? (
               <button className='bg-yellow-400 text-black/90 shadow-md rounded-md px-6 py-2' onClick={getMicrophonePermission} type="button">
                 Get Microphone
@@ -125,7 +127,26 @@ function App() {
                 Download Recording
               </a>
             </div>
-          ) : null}
+          ) : null} */}
+
+          <div className='text-5xl font-bold tracking-tight'>
+            Clippit!
+          </div>
+
+          <input value={vidUrl} onChange={(e)=>{setvidUrl(e.target.value)}} placeholder='Enter Youtube Url..' className='border-dotted border-blue-600 outline-none border-4 bg-gray-300 text-black text-sm w-2/5 px-5 py-2 rounded-full'>
+          </input>
+
+          <button onClick={async()=>{
+            if(vidUrl!=""){
+              await fetch("http://localhost:3000?vidUrl="+vidUrl).then(res=>res.json()).then(data=>{
+                console.log(data);
+              })
+
+            }
+          }} className='text-sm bg-blue-600 shadow-md rounded-md px-10 py-2 text-white hover:shadow-2xl hover:shadow-yellow-600/60 hover:scale-105 transition-all duration-300'>
+            Clip It
+          </button>
+
 
         </div>
 
